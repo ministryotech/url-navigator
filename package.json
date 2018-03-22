@@ -1,0 +1,25 @@
+{
+  "name": "url-navigator",
+  "version": "1.0.0",
+  "author": "Minotech Ltd",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "window",
+    "global",
+    "wrapper",
+    "url"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ministryotech/url-navigator.git"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.0",
+    "eslint-config-defaults": "^9.0.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-clean": "^0.4.0"
+  },
+  "dependencies": {}
+}
