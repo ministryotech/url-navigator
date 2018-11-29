@@ -11,12 +11,12 @@
 
     const getParamByName = function(name, url) {
         if (!url) url = location.href
-        name = name.replace(/[[\]]/g, "\\$&")
-        const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)")
+        name = name.replace(/[[\]]/g, '\\$&')
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
         const results = regex.exec(url)
         if (!results) return null
-        if (!results[2]) return ""
-        return decodeURIComponent(results[2].replace(/\+/g, " "))
+        if (!results[2]) return ''
+        return decodeURIComponent(results[2].replace(/\+/g, ' '))
     }
 
     const funcs = {
@@ -46,9 +46,9 @@
     }
 
     // Exports to the global scope
-    if (typeof define === "function" && define.amd) {
-        define("url-navigator", [], function() { return funcs })
-    } else if (typeof exports === "object") {
+    if (typeof define === 'function' && define.amd) {
+        define('url-navigator', [], function() { return funcs })
+    } else if (typeof exports === 'object') {
         module.exports = funcs
     } else {
         root.UrlNavigator = funcs
