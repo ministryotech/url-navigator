@@ -23,6 +23,7 @@ Our other open source repositories can be found here...
 
 * [https://github.com/ministryotech](https://github.com/ministryotech)
 * [https://github.com/tiefling](https://github.com/tiefling)
+
 ### Where can I get it?
 You can download the package for this project from any of the following package managers...
 
