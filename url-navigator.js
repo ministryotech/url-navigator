@@ -1,16 +1,22 @@
+// noinspection JSUnusedGlobalSymbols
+
 /*
     URL Navigator
     -------------
     Wrappers for URL data.
-
     https://github.com/ministryotech/url-navigator
 */
 (function() {
 
     const root = window
 
+    /**
+     * Gets a parameter by name from a provided URL.
+     * @param {string} name The name of the parameter.
+     * @param {string} url The URL to query.
+     * @returns {?string} The parameter value, if found.
+     */
     const getParamByName = function(name, url) {
-        if (!url) url = location.href
         name = name.replace(/[[\]]/g, '\\$&')
         const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
         const results = regex.exec(url)
@@ -19,39 +25,89 @@
         return decodeURIComponent(results[2].replace(/\+/g, ' '))
     }
 
-    const funcs = {
+    /**
+     * A helper for navigating around the web in code.
+     */
+    const UrlNavigator = {
+
+        /**
+         * Navigates to the provided URL.
+         * @param {string} url The destination.
+         */
         go: function(url) { 
             location.href = url 
         },
-        redirect: function(url) { 
+
+        /**
+         * Navigates to the provided URL, replacing the current URL in the history.
+         * @param {string} url The destination.
+         */
+        redirect: function(url) {
             location.replace(url) 
         },
-        getParameter: function(url, name) { 
+
+        /**
+         * Obtains a parameter from the provided URL.
+         * @param {string} url The URL.
+         * @param {string} name The name of the parameter.
+         * @returns {?string}
+         */
+        getParameter: function(url, name) {
             return getParamByName(name, url) 
         },
+
+        /**
+         * Functions to operate on the current URL.
+         */
         current: {
+
+            /**
+             * Get the protocol from the current URL.
+             * @returns {string}
+             */
             protocol: function() { 
                 return location.protocol 
             },
-            host: function() { 
+
+            /**
+             * Get the host from the current URL.
+             * @returns {string}
+             */
+            host: function() {
                 return location.host 
             },
-            url: function() { 
+
+            /**
+             * Get the current URL.
+             * @returns {string}
+             */
+            url: function() {
                 return location.href 
             },
-            urlParameter: function(name) { 
-                return getParamByName(name) 
+
+            /**
+             * Get the named parameter from the current URL.
+             * @returns {string}
+             * @param {string} name The name of the parameter.
+             * @returns {?string}
+             */
+            urlParameter: function(name) {
+                return getParamByName(name, location.href)
             }
         }
     }
 
-    // Exports to the global scope
+    /*--------------------------------------------------------------------------*/
+
+    // Export library
+    // noinspection JSUnresolvedReference - define check for require.js module support.
     if (typeof define === 'function' && define.amd) {
-        define('url-navigator', [], function() { return funcs })
+        // noinspection JSUnresolvedReference - define check for require.js module support.
+        define('url-navigator', [], function() { return UrlNavigator })
     } else if (typeof exports === 'object') {
-        module.exports = funcs
+        module.exports = UrlNavigator
     } else {
-        root.UrlNavigator = funcs
+        root.UrlNavigator = UrlNavigator
     }
     
 })()
