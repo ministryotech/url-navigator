@@ -8,7 +8,7 @@
 */
 (function() {
 
-    const root = window
+    var root = window
 
     /**
      * Gets a parameter by name from a provided URL.
@@ -16,10 +16,10 @@
      * @param {string} url The URL to query.
      * @returns {?string} The parameter value, if found.
      */
-    const getParamByName = function(name, url) {
+    var getParamByName = function(name, url) {
         name = name.replace(/[[\]]/g, '\\$&')
-        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
-        const results = regex.exec(url)
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+        var results = regex.exec(url)
         if (!results) return null
         if (!results[2]) return ''
         return decodeURIComponent(results[2].replace(/\+/g, ' '))
@@ -28,14 +28,14 @@
     /**
      * A helper for navigating around the web in code.
      */
-    const UrlNavigator = {
+    var UrlNavigator = {
 
         /**
          * Navigates to the provided URL.
          * @param {string} url The destination.
          */
-        go: function(url) { 
-            location.href = url 
+        go: function(url) {
+            location.href = url
         },
 
         /**
@@ -43,7 +43,7 @@
          * @param {string} url The destination.
          */
         redirect: function(url) {
-            location.replace(url) 
+            location.replace(url)
         },
 
         /**
@@ -53,7 +53,7 @@
          * @returns {?string}
          */
         getParameter: function(url, name) {
-            return getParamByName(name, url) 
+            return getParamByName(name, url)
         },
 
         /**
@@ -65,8 +65,8 @@
              * Get the protocol from the current URL.
              * @returns {string}
              */
-            protocol: function() { 
-                return location.protocol 
+            protocol: function() {
+                return location.protocol
             },
 
             /**
@@ -74,7 +74,7 @@
              * @returns {string}
              */
             host: function() {
-                return location.host 
+                return location.host
             },
 
             /**
@@ -82,7 +82,7 @@
              * @returns {string}
              */
             url: function() {
-                return location.href 
+                return location.href
             },
 
             /**
@@ -93,8 +93,8 @@
              */
             urlParameter: function(name) {
                 return getParamByName(name, location.href)
-            }
-        }
+            },
+        },
     }
 
     /*--------------------------------------------------------------------------*/
@@ -103,11 +103,13 @@
     // noinspection JSUnresolvedReference - define check for require.js module support.
     if (typeof define === 'function' && define.amd) {
         // noinspection JSUnresolvedReference - define check for require.js module support.
-        define('url-navigator', [], function() { return UrlNavigator })
+        define('url-navigator', [], function() {
+            return UrlNavigator
+        })
     } else if (typeof exports === 'object') {
         module.exports = UrlNavigator
     } else {
         root.UrlNavigator = UrlNavigator
     }
-    
+
 })()
