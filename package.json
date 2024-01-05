@@ -1,6 +1,6 @@
 {
   "name": "url-navigator",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "author": "Keith Jackson",
   "license": "MIT",
   "private": false,
@@ -26,7 +26,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "lint": "eslint src/*.js --fix",
+    "lint": "eslint src/*.ts --fix",
     "ensure-dir": "mkdir ./dist",
     "clean": "rm -rf ./dist",
     "esbuild:min": "esbuild ./dist/url-navigator.js --minify --outfile=./dist/url-navigator.min.js",
